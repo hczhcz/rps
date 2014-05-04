@@ -77,6 +77,7 @@ class RPSbotholder(RPSholder, RPSbot):
 class RPSgame(RPSbotholder):
     lastguess = 'r'
     membermap = {'r': 'p', 'p': 's', 's': 'r'}
+    exitchar = 'x'
     played = 0
     botwin = 0
 
@@ -90,6 +91,7 @@ class RPSgame(RPSbotholder):
             print self.membermap[self.lastguess] if domap else self.lastguess,
             print ' (', self.botwin, '/', self.played, ')'
             self.lastguess = self.input(c)
+        return c != self.exitchar
 
     def __init__(self):
         RPSlib.__init__(self)
@@ -97,5 +99,5 @@ class RPSgame(RPSbotholder):
 
 r = RPSgame()
 
-while True:
-    r.play(False)
+while r.play():
+    pass
