@@ -81,7 +81,7 @@ class RPSgame(RPSbotholder):
     played = 0
     botwin = 0
 
-    def play(self, domap=True):
+    def play(self, domap=True, mode2=False):
         import sys
         c = sys.stdin.read(1)
         if c in self.member:
@@ -91,6 +91,8 @@ class RPSgame(RPSbotholder):
             print self.membermap[self.lastguess] if domap else self.lastguess,
             print ' (', self.botwin, '/', self.played, ')'
             self.lastguess = self.input(c)
+            if mode2:
+                self.input(self.lastguess)
         return c != self.exitchar
 
     def __init__(self):
@@ -98,6 +100,9 @@ class RPSgame(RPSbotholder):
 
 
 r = RPSgame()
+
+print 'play: r/p/s'
+print 'exit: x'
 
 while r.play():
     pass
